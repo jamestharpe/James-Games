@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JamesGames.PlayingCards", "JamesGames.PlayingCards\JamesGames.PlayingCards.csproj", "{52B5736E-ACCC-47C4-A7B9-11F6366D69FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JamesGames.PlayingCards.Tests", "JamesGames.PlayingCards.Tests\JamesGames.PlayingCards.Tests.csproj", "{8BEDA0F2-A5DE-426D-A950-91B5BD8EFF5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1488979B-DFEA-4FCC-8469-98506E7247BF}"
+	ProjectSection(SolutionItems) = preProject
+		JamesGames.vsmdi = JamesGames.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = JamesGames.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52B5736E-ACCC-47C4-A7B9-11F6366D69FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52B5736E-ACCC-47C4-A7B9-11F6366D69FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52B5736E-ACCC-47C4-A7B9-11F6366D69FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52B5736E-ACCC-47C4-A7B9-11F6366D69FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BEDA0F2-A5DE-426D-A950-91B5BD8EFF5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BEDA0F2-A5DE-426D-A950-91B5BD8EFF5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BEDA0F2-A5DE-426D-A950-91B5BD8EFF5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BEDA0F2-A5DE-426D-A950-91B5BD8EFF5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
