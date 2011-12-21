@@ -38,6 +38,7 @@ namespace JamesGames.PlayingCards
         {
             this.Clear();
             this.AddRange(_CardSupplier.SupplyDeck());
+            Rolcore.Collections.ListExtensions.Shuffle(this);
         }
     }
 }
