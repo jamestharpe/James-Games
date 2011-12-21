@@ -45,6 +45,11 @@ namespace JamesGames.PlayingCards
             return (this == (PlayingCard)obj);
         }
 
+        public override int GetHashCode()
+        {
+            return (this.Face.GetHashCode() * 50) ^ (this.Suit.GetHashCode());
+        }
+
         public static bool operator ==(PlayingCard card1, PlayingCard card2)
         {
             if (object.ReferenceEquals(card1, card2))
