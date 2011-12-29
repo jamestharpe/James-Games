@@ -87,7 +87,7 @@ namespace JamesGames.PlayingCards.Tests
             Assert.AreEqual(target.Count, 0);
             target.Reset();
             Assert.AreEqual(target.Count, 1);
-            Assert.AreEqual(target[0], new PlayingCard(PlayingCardSuit.Spades, PlayingCardFace.Ace));
+            Assert.AreEqual(target[0], PlayingCard.AceOfSpades);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace JamesGames.PlayingCards.Tests
             IDeckOfCardsSupplier cardSupplier = new Mock1AceOfSpadesDeckOfCardSupplier();
             DeckOfCards target = new DeckOfCards(cardSupplier);
             Assert.AreEqual(target.Count, 1);
-            Assert.AreEqual(target[0], new PlayingCard(PlayingCardSuit.Spades, PlayingCardFace.Ace));
+            Assert.AreEqual(target[0], PlayingCard.AceOfSpades);
         }
     }
 }

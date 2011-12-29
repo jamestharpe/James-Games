@@ -9,7 +9,7 @@ namespace JamesGames.PlayingCards.Tests.Mocks
         public PlayingCard[] SupplyDeck()
 		{
 		    return new PlayingCard[] {
-		        new PlayingCard(PlayingCardSuit.Spades, PlayingCardFace.Ace)
+		        PlayingCard.AceOfSpades
 		    };
         }
     }

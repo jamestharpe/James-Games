@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8BEDA0F2-A5DE-426D-A950-91B5BD8EFF5D}</ProjectGuid>
+    <ProjectGuid>{18F03F58-A4CD-4605-ADB1-18EC0124EA62}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JamesGames.PlayingCards.Tests</RootNamespace>
-    <AssemblyName>JamesGames.PlayingCards.Tests</AssemblyName>
+    <RootNamespace>JamesGames.War.Tests</RootNamespace>
+    <AssemblyName>JamesGames.War.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -53,17 +53,20 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeckOfCardsTest.cs" />
-    <Compile Include="Mocks\Mock1AceOfSpadesDeckOfCardSupplier.cs" />
-    <Compile Include="PlayingCardTests.cs" />
+    <Compile Include="BattleFieldTest.cs" />
+    <Compile Include="Mocks\MockWarGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StandardDeckOfCardsSupplierTest.cs" />
-    <Compile Include="TestData.cs" />
+    <Compile Include="WarCardComparerTest.cs" />
+    <Compile Include="WarPlayerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JamesGames.PlayingCards\JamesGames.PlayingCards.csproj">
       <Project>{52B5736E-ACCC-47C4-A7B9-11F6366D69FC}</Project>
       <Name>JamesGames.PlayingCards</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JamesGames.War\JamesGames.War.csproj">
+      <Project>{5F63410B-2B40-4A7A-B0C0-5B1F029A71E6}</Project>
+      <Name>JamesGames.War</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

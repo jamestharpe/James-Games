@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Rolcore.Collections;
 
 namespace JamesGames.PlayingCards
 {
@@ -19,6 +20,7 @@ namespace JamesGames.PlayingCards
         /// <param name="cardSupplier">Specifies the source of cards for the deck.</param>
         public DeckOfCards(IDeckOfCardsSupplier cardSupplier)
         {
+            Size = 0;
             _CardSupplier = cardSupplier ?? new StandardDeckOfCardsSupplier();
             Reset();
         }
@@ -30,15 +32,25 @@ namespace JamesGames.PlayingCards
         #endregion Constructors
 
         /// <summary>
-        /// Resets the deck instance to it's original state, with a fully new set of cards. It 
-        /// should not be assumed that the cards are in any particular order (e.g. shuffled or 
-        /// sorted).
+        /// Gets a value indicating the number of cards the deck initially holds.
+        /// </summary>
+        public int Size
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Resets the deck instance to it's original state, with a fully new set of cards. In most
+        /// cases, it should not be assumed that the cards are in any particular order (e.g. 
+        /// shuffled or sorted).
         /// </summary>
         public void Reset()
         {
             this.Clear();
-            this.AddRange(_CardSupplier.SupplyDeck());
-            Rolcore.Collections.ListExtensions.Shuffle(this);
+            PlayingCard[] supply = _CardSupplier.SupplyDeck();
+            this.Size = this.Count;
+            this.AddRange(supply);
         }
     }
 }

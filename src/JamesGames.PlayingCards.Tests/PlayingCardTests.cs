@@ -92,7 +92,7 @@ namespace JamesGames.PlayingCards.Tests
         [TestMethod()]
         public void FaceTest()
         {
-            PlayingCard target = new PlayingCard(PlayingCardSuit.Diamonds, PlayingCardFace.Eight);
+            PlayingCard target = PlayingCard.EightOfDiamonds;
             Assert.AreEqual(target.Face, PlayingCardFace.Eight);
             target.Face = PlayingCardFace.Five;
             Assert.AreEqual(target.Face, PlayingCardFace.Five);
@@ -104,7 +104,7 @@ namespace JamesGames.PlayingCards.Tests
         [TestMethod()]
         public void SuitTest()
         {
-            PlayingCard target = new PlayingCard(PlayingCardSuit.Hearts, PlayingCardFace.Five);
+            PlayingCard target = PlayingCard.FiveOfHearts;
             Assert.AreEqual(target.Suit, PlayingCardSuit.Hearts);
             target.Suit = PlayingCardSuit.Spades;
             Assert.AreEqual(target.Suit, PlayingCardSuit.Spades);

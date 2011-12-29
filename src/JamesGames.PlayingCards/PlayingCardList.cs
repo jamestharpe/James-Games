@@ -36,5 +36,17 @@ namespace JamesGames.PlayingCards
         {
             
         }
+
+        public PlayingCard DealTo(PlayingCardList cards)
+        {
+            if (this.Count < 1)
+                throw new InvalidOperationException("List is Empty.");
+
+            PlayingCard result = this[0];
+            cards.Add(result);
+            this.RemoveAt(0);
+
+            return result;   
+        }
     }
 }
