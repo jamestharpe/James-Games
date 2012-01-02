@@ -48,9 +48,9 @@ namespace JamesGames.PlayingCards
         public void Reset()
         {
             this.Clear();
-            PlayingCard[] supply = _CardSupplier.SupplyDeck();
-            this.Size = this.Count;
+            var supply = _CardSupplier.SupplyDeck();
             this.AddRange(supply);
+            this.Size = this.Count;
         }
     }
 }

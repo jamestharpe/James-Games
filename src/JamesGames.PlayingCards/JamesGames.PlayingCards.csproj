@@ -31,8 +31,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Rolcore">
-      <HintPath>..\packages\Rolcore.0.0.0.1\lib\net40\Rolcore.dll</HintPath>
+    <Reference Include="Rolcore, Version=0.0.4381.22528, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.dll</HintPath>
+    </Reference>
+    <Reference Include="Rolcore.Data, Version=0.0.4381.21042, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Rolcore.Net, Version=0.0.4381.22540, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Rolcore.Web, Version=0.0.4381.22540, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Rolcore.Xml.Linq, Version=0.0.4381.22539, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Xml.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace JamesGames.PlayingCards
 {
@@ -10,6 +8,7 @@ namespace JamesGames.PlayingCards
     /// </summary>
     public class PlayingCardList : List<PlayingCard>
     {
+        #region Constructors
         /// <summary>
         /// Initializes a new instance of PlayingCardList.
         /// </summary>
@@ -36,15 +35,21 @@ namespace JamesGames.PlayingCards
         {
             
         }
+        #endregion Constructors
 
+        /// <summary>
+        /// Deals the top card from the current instance to the specified instance.
+        /// </summary>
+        /// <param name="cards">Specifies the destination for the dealt card.</param>
+        /// <returns>The <see cref="PlayingCard"/> that was dealt.</returns>
         public PlayingCard DealTo(PlayingCardList cards)
         {
             if (this.Count < 1)
-                throw new InvalidOperationException("List is Empty.");
+                throw new InvalidOperationException("There are no cards to deal.");
 
             PlayingCard result = this[0];
             cards.Add(result);
-            this.RemoveAt(0);
+            RemoveAt(0);
 
             return result;   
         }

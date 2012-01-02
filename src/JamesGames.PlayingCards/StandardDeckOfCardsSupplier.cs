@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
 
 namespace JamesGames.PlayingCards
@@ -16,11 +14,21 @@ namespace JamesGames.PlayingCards
         /// </summary>
         public PlayingCard[] SupplyDeck()
         {
+            //
+            // Source data
+
             PlayingCardSuit[] cardSuits = (PlayingCardSuit[])Enum.GetValues(typeof(PlayingCardSuit));
             PlayingCardFace[] cardFaces = (PlayingCardFace[])Enum.GetValues(typeof(PlayingCardFace));
+
+            //
+            // Error checking
+
             int resultCount = cardSuits.Length * cardFaces.Length;
             Debug.Assert(resultCount == 52); // Last time I checked, a standard deck of cards 
                                              // contains 52 cards.
+
+            //
+            // Generate supply 
 
             List<PlayingCard> result = new List<PlayingCard>(resultCount);
             foreach (PlayingCardSuit suit in cardSuits)

@@ -67,7 +67,7 @@ namespace JamesGames.PlayingCards.Tests
         ///A test for Reset
         ///</summary>
         [TestMethod()]
-        public void ResetrDefaultsToStandardDeckTest()
+        public void ResetDefaultsToStandardDeckTest()
         {
             DeckOfCards target = new DeckOfCards();
             target.Clear();
@@ -110,6 +110,22 @@ namespace JamesGames.PlayingCards.Tests
             DeckOfCards target = new DeckOfCards(cardSupplier);
             Assert.AreEqual(target.Count, 1);
             Assert.AreEqual(target[0], PlayingCard.AceOfSpades);
+        }
+
+        /// <summary>
+        ///A test for Size
+        ///</summary>
+        [TestMethod()]
+        public void SizeTest()
+        {
+            DeckOfCards target = new DeckOfCards(); // TODO: Initialize to an appropriate value
+            Assert.AreEqual(TestData.Standard52CardDeck.Length, target.Size);
+            target.Clear();
+            Assert.AreEqual(TestData.Standard52CardDeck.Length, target.Size);
+            target = new DeckOfCards(new Mock1AceOfSpadesDeckOfCardSupplier());
+            Assert.AreEqual(1, target.Size);
+            target.Clear();
+            Assert.AreEqual(1, target.Size);
         }
     }
 }

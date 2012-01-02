@@ -39,6 +39,11 @@ namespace JamesGames.PlayingCards
         /// </summary>
         public PlayingCardFace Face { get; set; }
 
+        public override string ToString()
+        {
+            return String.Format("{0} of {1}", Face, Suit);
+        }
+
         #region Operators
         public override bool Equals(object obj)
         {
