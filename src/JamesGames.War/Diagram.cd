@@ -3,22 +3,22 @@
   <Class Name="JamesGames.War.WarGame">
     <Position X="2.5" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAABAAABAEAAACACAAEAAFAAAAAAAAAAAgAAAIBA=</HashCode>
+      <HashCode>AAAAAABAAABAEAAACACAAEAAFAAIAAAAAAAAgAAAIBA=</HashCode>
       <FileName>WarGame.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JamesGames.War.WarPlayer">
     <Position X="5.5" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAABAAAAABAAAAAAAAAQIAAhAAAAAgAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAABAAAAAAAAAAAAIAAQIAAhAAAAAgAAAAAAAAAA=</HashCode>
       <FileName>WarPlayer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="JamesGames.War.BattleField">
+  <Class Name="JamesGames.War.BattleTracker">
     <Position X="5.5" Y="3.5" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACEAAAAACAEEAUAAAAAAAAAAAIhABAEAA=</HashCode>
-      <FileName>BattleField.cs</FileName>
+      <HashCode>AAAAAAAAAAACEAAAAACA0EAUAAAAAAAAAAACBABAEAQ=</HashCode>
+      <FileName>BattleTracker.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JamesGames.War.WarCardComparer">

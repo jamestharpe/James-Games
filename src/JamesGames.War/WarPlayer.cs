@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using JamesGames.PlayingCards;
 
 namespace JamesGames.War
@@ -11,10 +8,13 @@ namespace JamesGames.War
     /// </summary>
     public class WarPlayer
     {
-        private int _MaxAttackIndex = 0;
+        private int _MaxAttackIndex = -1;
         private readonly PlayingCardList _Cards = new PlayingCardList();
         private AbstractWarGame _Game;
 
+        /// <summary>
+        /// Gets and sets the player's name.
+        /// </summary>
         public string Name { get; set; }
 
         public AbstractWarGame Game
@@ -24,7 +24,6 @@ namespace JamesGames.War
             {
                 if (_Game != null && value != null)
                     throw new InvalidOperationException("Player already belongs to a game.");
-
                 _Game = value;
             }
         }
@@ -36,18 +35,19 @@ namespace JamesGames.War
 
         public void Play()
         {
-            if(this.Cards.Count == 0)
-                throw new InvalidOperationException("No cards to play.");
 
             switch (Game.GameState)
             {
+                case WarGameState.NewGame:
                 case WarGameState.AtBattle:
+                    if (this.Cards.Count == 0)
+                        throw new InvalidOperationException("No cards to play.");
                     Game.PlayerBattle(this);
                     break;
-                case WarGameState.AtWar:
-                    _MaxAttackIndex = Game.PlayerGoToWar(this) -1;
+                case WarGameState.WarDeclared:
+                    _MaxAttackIndex = Game.PlayerDeclareWar(this) -1;
                     break;
-                case WarGameState.AtWarBattle:
+                case WarGameState.AtWar:
                     Game.PlayerPickWarAttack(this, _MaxAttackIndex);
                     break;
                 case WarGameState.GameOver: default:

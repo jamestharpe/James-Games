@@ -9,8 +9,8 @@ namespace JamesGames.War
     public abstract class AbstractWarGame
     {
         internal abstract PlayingCard PlayerBattle(WarPlayer player);
-        internal abstract int PlayerGoToWar(WarPlayer player);
-        internal abstract void PlayerPickWarAttack(WarPlayer player, int attackIndex);
+        internal abstract int PlayerDeclareWar(WarPlayer player);
+        internal abstract PlayingCard PlayerPickWarAttack(WarPlayer player, int attackIndex);
 
         public abstract WarGameState GameState { get; }
 
