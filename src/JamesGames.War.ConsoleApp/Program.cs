@@ -12,6 +12,7 @@ namespace JamesGames.War.ConsoleApp
     {
         static void Main(string[] args)
         {
+            var numberOfTimesToPlay = ConsoleUtils.PromptForValue<int>("How many games do you want to play?");
             WarGame game = new WarGame(
                 new WarPlayer() { Name = "Player 1" },
                 new WarPlayer() { Name = "Player 2" });
@@ -19,13 +20,16 @@ namespace JamesGames.War.ConsoleApp
             Debug.Listeners.Add(new ConsoleTraceListener());
             try
             {
-                for (int i = 0; i < 10000; i++)
+                for (int i = 1; i <= numberOfTimesToPlay; i++)
                 {
-                    //while (game.GameState != WarGameState.GameOver)
+                    do
                     {
                         game.AdvancePlay();
                         Debug.WriteLine(string.Empty);
-                    }    
+                        if (game.GameState == WarGameState.GameOver)
+                            Debug.WriteLine("Winner: " + game.Winner.Name);
+                    } while (game.GameState != WarGameState.GameOver);
+
                 }
             }
             catch (Exception ex)
