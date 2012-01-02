@@ -35,8 +35,15 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Rolcore">
-      <HintPath>..\packages\Rolcore.0.0.0.1\lib\net40\Rolcore.dll</HintPath>
+    <Reference Include="Rolcore, Version=0.0.4381.22528, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.dll</HintPath>
+    </Reference>
+    <Reference Include="Rolcore.Net">
+      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Rolcore.Xml.Linq">
+      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Xml.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -53,10 +60,11 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BattleFieldTest.cs" />
     <Compile Include="Mocks\MockWarGame.cs" />
+    <Compile Include="Mocks\SingWarDeckOfCardsSupplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WarCardComparerTest.cs" />
+    <Compile Include="WarGameTest.cs" />
     <Compile Include="WarPlayerTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +76,9 @@
       <Project>{5F63410B-2B40-4A7A-B0C0-5B1F029A71E6}</Project>
       <Name>JamesGames.War</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -123,11 +123,11 @@ namespace JamesGames.War.Tests
         }
 
         [TestMethod()]
-        public void PlayAtWarTest()
+        public void PlayWarDeclaredTest()
         {
             WarPlayer target = new WarPlayer();
             target.Cards.AddRange(new DeckOfCards());
-            MockWarGame warGame = new MockWarGame(WarGameState.AtWar);
+            MockWarGame warGame = new MockWarGame(WarGameState.WarDeclared);
             target.Game = warGame;
             target.Play();
             warGame.AssertCallCounts(playerGoToWar: 1);
@@ -138,10 +138,10 @@ namespace JamesGames.War.Tests
         {
             WarPlayer target = new WarPlayer();
             target.Cards.AddRange(new DeckOfCards());
-            MockWarGame warGame = new MockWarGame(WarGameState.AtWar);
+            MockWarGame warGame = new MockWarGame(WarGameState.WarDeclared);
             target.Game = warGame;
             target.Play();
-            warGame.SetGameState(WarGameState.AtWarBattle);
+            warGame.SetGameState(WarGameState.AtWar);
             target.Play();
             warGame.AssertCallCounts(playerGoToWar:1, playerPickWarAttack:1, lastAttackIndex:2);
         }

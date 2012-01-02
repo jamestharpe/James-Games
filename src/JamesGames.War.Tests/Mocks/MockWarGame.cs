@@ -9,7 +9,7 @@ namespace JamesGames.War.Mocks
 {
     class MockWarGame : AbstractWarGame
     {
-        private PlayingCardList _DealtCards = new PlayingCardList();
+        private readonly PlayingCardList _DealtCards = new PlayingCardList();
         private WarGameState _WarGameState;
         private int count_PlayerBattle = 0;
         private int count_PlayerGoToWar = 0;
@@ -35,16 +35,17 @@ namespace JamesGames.War.Mocks
             return player.Cards.DealTo(_DealtCards);
         }
 
-        internal override int PlayerGoToWar(WarPlayer player)
+        internal override int PlayerDeclareWar(WarPlayer player)
         {
             count_PlayerGoToWar++;
             return 3;
         }
 
-        internal override void PlayerPickWarAttack(WarPlayer player, int attackIndex)
+        internal override PlayingCard PlayerPickWarAttack(WarPlayer player, int attackIndex)
         {
             count_PlayerPickWarAttack++;
             value_lastAttackIndex = attackIndex;
+            return PlayingCard.EightOfSpades;
         }
 
         public override WarGameState GameState
