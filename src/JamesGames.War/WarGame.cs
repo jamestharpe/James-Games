@@ -295,6 +295,7 @@ namespace JamesGames.War
 
             //
             // Deal
+
             _Players.ForEach(p => p.Cards.Clear());
             while(_Cards.Count > 0)
                 foreach (WarPlayer player in _Players)
