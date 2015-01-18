@@ -1,7 +1,5 @@
-﻿using JamesGames.War;
+﻿using JamesGames.PlayingCards;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using JamesGames.PlayingCards;
 
 namespace JamesGames.War.Tests
 {
