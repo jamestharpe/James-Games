@@ -1,7 +1,6 @@
 ﻿using JamesGames.PlayingCards;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using JamesGames.PlayingCards.Tests.Mocks;
 
 namespace JamesGames.PlayingCards.Tests
 {
@@ -13,24 +12,6 @@ namespace JamesGames.PlayingCards.Tests
     public class DeckOfCardsTest
     {
 
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
 
         #region Additional test attributes
         // 
@@ -67,7 +48,7 @@ namespace JamesGames.PlayingCards.Tests
         ///A test for Reset
         ///</summary>
         [TestMethod()]
-        public void ResetDefaultsToStandardDeckTest()
+        public void Reset_DefaultsToStandardDeckTest()
         {
             DeckOfCards target = new DeckOfCards();
             target.Clear();
@@ -77,55 +58,13 @@ namespace JamesGames.PlayingCards.Tests
         }
 
         /// <summary>
-        ///A test for Reset
-        ///</summary>
-        [TestMethod()]
-        public void ResetrDefaultsToDeckOfCardSupplierTest()
-        {
-            DeckOfCards target = new DeckOfCards(new Mock1AceOfSpadesDeckOfCardSupplier());
-            target.Clear();
-            Assert.AreEqual(target.Count, 0);
-            target.Reset();
-            Assert.AreEqual(target.Count, 1);
-            Assert.AreEqual(target[0], PlayingCard.AceOfSpades);
-        }
-
-        /// <summary>
         ///A test for DeckOfCards Constructor
         ///</summary>
         [TestMethod()]
-        public void DeckOfCardsConstructorDefaultsToStandardDeckTest()
+        public void DeckOfCardsConstructor_DefaultsToStandardDeckTest()
         {
             DeckOfCards target = new DeckOfCards();
             TestData.AssertIsStandard52CardDeck(target.ToArray());
-        }
-
-        /// <summary>
-        ///A test for DeckOfCards Constructor
-        ///</summary>
-        [TestMethod()]
-        public void DeckOfCardsConstructorUsesDeckOfCardsSupplierTest()
-        {
-            IDeckOfCardsSupplier cardSupplier = new Mock1AceOfSpadesDeckOfCardSupplier();
-            DeckOfCards target = new DeckOfCards(cardSupplier);
-            Assert.AreEqual(target.Count, 1);
-            Assert.AreEqual(target[0], PlayingCard.AceOfSpades);
-        }
-
-        /// <summary>
-        ///A test for Size
-        ///</summary>
-        [TestMethod()]
-        public void SizeTest()
-        {
-            DeckOfCards target = new DeckOfCards(); // TODO: Initialize to an appropriate value
-            Assert.AreEqual(TestData.Standard52CardDeck.Length, target.Size);
-            target.Clear();
-            Assert.AreEqual(TestData.Standard52CardDeck.Length, target.Size);
-            target = new DeckOfCards(new Mock1AceOfSpadesDeckOfCardSupplier());
-            Assert.AreEqual(1, target.Size);
-            target.Clear();
-            Assert.AreEqual(1, target.Size);
         }
     }
 }

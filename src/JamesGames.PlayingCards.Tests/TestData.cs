@@ -66,8 +66,10 @@ namespace JamesGames.PlayingCards.Tests
         {
             Assert.AreEqual(cards.Length, Standard52CardDeck.Length);
 
-            foreach (PlayingCard expectedCard in Standard52CardDeck) //Do not assume order
+            foreach (var expectedCard in Standard52CardDeck)
+            {
                 Assert.IsTrue(cards.Contains(expectedCard));
+            }
         }
     }
 }

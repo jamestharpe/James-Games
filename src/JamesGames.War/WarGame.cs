@@ -22,13 +22,13 @@ namespace JamesGames.War
     /// </remarks>
     public class WarGame : AbstractWarGame
     {
-        private readonly List<WarPlayer> _Players = new List<WarPlayer>();
-        private readonly DeckOfCards _Cards = new DeckOfCards();
-        private BattleTracker _BattleTracker;
+        private readonly List<WarPlayer> players = new List<WarPlayer>();
+        private readonly DeckOfCards cards = new DeckOfCards();
+        private BattleTracker battleTracker;
 
         private void EnforceRequiredPlayerCount()
         {
-            if (_Players.Count != RequiredPlayerCount)
+            if (players.Count != RequiredPlayerCount)
                 throw new InvalidOperationException("War requires exactly two players");
         }
 
@@ -40,14 +40,14 @@ namespace JamesGames.War
 
         protected int AwardBattleWinner()
         {
-            var winner = _BattleTracker.Winner;
+            var winner = battleTracker.Winner;
             if (winner == null)
                 throw new InvalidOperationException("No winner for the current battle.");
 
             int result = 0;
 
             PlayingCardList winStack = new PlayingCardList();
-            foreach (PlayingCardList attack in _BattleTracker.PlayerAttacks.Values)
+            foreach (PlayingCardList attack in battleTracker.PlayerAttacks.Values)
             {
                 while (attack.Count > 0)
                 {
@@ -59,13 +59,9 @@ namespace JamesGames.War
             while (winStack.Count > 0)
                 winStack.DealTo(winner.Cards);
 
-            var numberOfCards = _Players
+            var numberOfCards = players
                 .Select(player => player.Cards)
                 .Sum(cards => cards.Count);
-
-            Debug.Assert(
-                numberOfCards == _Cards.Size,
-                String.Format("Wrong number of cards: {0}.", numberOfCards));
 
             Debug.Assert(result > 0, "No cards awarded.");
             Debug.WriteLine(String.Format("{0} cards awarded to {1}", result, winner.Name));
@@ -75,17 +71,11 @@ namespace JamesGames.War
 
         internal override PlayingCard PlayerBattle(WarPlayer player)
         {
-            //
-            // Pre conditions
-
-            Debug.Assert(_BattleTracker.PlayerAttacks.Keys.Contains(player), "Player is not part of game.");
-            RequireGameState(WarGameState.AtBattle, WarGameState.NewGame);
+            Debug.Assert(battleTracker.PlayerAttacks.Keys.Contains(player), "Player is not part of game.");
+            this.RequireGameState(WarGameState.AtBattle, WarGameState.NewGame);
             
-            //
-            // Perform "battle" action
-
-            PlayingCard result = player.Cards.DealTo(_BattleTracker.PlayerAttacks[player]);
-            _BattleTracker.ActiveAttacks[player] = result;
+            var result = player.Cards.DealTo(battleTracker.PlayerAttacks[player]);
+            battleTracker.ActiveAttacks[player] = result;
 
             Debug.WriteLine(String.Format("{0} went to battle with the {1}", player.Name, result));
 
@@ -102,7 +92,7 @@ namespace JamesGames.War
             //
             // Pre conditions
 
-            if (!_BattleTracker.PlayerAttacks.Keys.Contains(player))
+            if (!battleTracker.PlayerAttacks.Keys.Contains(player))
                 throw new InvalidOperationException("Cannot declare war without having attacked first.");
 
             RequireGameState(WarGameState.WarDeclared);
@@ -110,11 +100,11 @@ namespace JamesGames.War
             //
             // Deactivate active attack
 
-            _BattleTracker.ActiveAttacks.Remove(player);
-            if (!_BattleTracker.ActiveWars.ContainsKey(player))
-                _BattleTracker.ActiveWars[player] = new List<PlayingCardList>();
-            _BattleTracker.ActiveWars[player].Add(new PlayingCardList(NumberOfCardsToDealForWar));
-            var warIndex = _BattleTracker.ActiveWars[player].Count - 1;
+            battleTracker.ActiveAttacks.Remove(player);
+            if (!battleTracker.ActiveWars.ContainsKey(player))
+                battleTracker.ActiveWars[player] = new List<PlayingCardList>();
+            battleTracker.ActiveWars[player].Add(new PlayingCardList(NumberOfCardsToDealForWar));
+            var warIndex = battleTracker.ActiveWars[player].Count - 1;
 
             //
             // Deal cards to "declare war"
@@ -122,13 +112,13 @@ namespace JamesGames.War
             var result = 0;
             for (var i = 1; i <= NumberOfCardsToDealForWar && player.Cards.Count > 0; i++)
             {
-                var card = player.Cards.DealTo(_BattleTracker.PlayerAttacks[player]);
-                _BattleTracker.ActiveWars[player][warIndex].Add(card);
+                var card = player.Cards.DealTo(battleTracker.PlayerAttacks[player]);
+                battleTracker.ActiveWars[player][warIndex].Add(card);
                 result++;
             }
 
             Debug.Assert(result <= NumberOfCardsToDealForWar, "Did not deal enough war cards.");
-            Debug.Assert(!_BattleTracker.ActiveAttacks.ContainsKey(player), "Player has invalid attack.");
+            Debug.Assert(!battleTracker.ActiveAttacks.ContainsKey(player), "Player has invalid attack.");
             Debug.WriteLine(player.Name + " declared war!");
 
             return result;
@@ -139,11 +129,11 @@ namespace JamesGames.War
             //
             // Pre conditions
 
-            if (!_BattleTracker.PlayerAttacks.Keys.Contains(player))
+            if (!battleTracker.PlayerAttacks.Keys.Contains(player))
                 throw new InvalidOperationException("Cannot go to war without having attacked first.");
-            if (!_BattleTracker.ActiveWars.ContainsKey(player) || _BattleTracker.ActiveWars[player].Count == 0)
+            if (!battleTracker.ActiveWars.ContainsKey(player) || battleTracker.ActiveWars[player].Count == 0)
                 throw new InvalidOperationException(String.Format("{0} has not declared war.", player.Name));
-            if (_BattleTracker.ActiveAttacks.ContainsKey(player))
+            if (battleTracker.ActiveAttacks.ContainsKey(player))
                 throw new InvalidOperationException(String.Format("{0} already has an active attack.", player.Name));
 
             RequireGameState(WarGameState.AtWar);
@@ -156,9 +146,9 @@ namespace JamesGames.War
                 //
                 // Player is out of cards, default to last attack.
             {
-                var lastAttachIndex = _BattleTracker.PlayerAttacks[player].Count - 1;
-                var defactoResult = _BattleTracker.PlayerAttacks[player][lastAttachIndex];
-                _BattleTracker.ActiveAttacks[player] = defactoResult;
+                var lastAttachIndex = battleTracker.PlayerAttacks[player].Count - 1;
+                var defactoResult = battleTracker.PlayerAttacks[player][lastAttachIndex];
+                battleTracker.ActiveAttacks[player] = defactoResult;
                 return defactoResult;
             }
             else if (attackIndex > maxIndex || attackIndex < 0)
@@ -168,10 +158,10 @@ namespace JamesGames.War
             //
             // Activate the selected attack 
 
-            var wars = _BattleTracker.ActiveWars[player];
+            var wars = battleTracker.ActiveWars[player];
             var warCards = wars[wars.Count - 1];
             var result = warCards[attackIndex];
-            _BattleTracker.ActiveAttacks[player] = result;
+            battleTracker.ActiveAttacks[player] = result;
 
             Debug.WriteLine(String.Format("{0} went to war with the {1}", player.Name, result));
 
@@ -199,7 +189,7 @@ namespace JamesGames.War
         /// </summary>
         public WarPlayer Winner
         {
-            get { return _Players.SingleOrDefault(player => player.Cards.Count == _Cards.Size); }
+            get { return this.players.SingleOrDefault(player => player.Cards.Count == this.cards.Count); }
         }
 
         /// <summary>
@@ -213,7 +203,7 @@ namespace JamesGames.War
                 //
                 // Check for game over
 
-                if (_Players.Count != RequiredPlayerCount)
+                if (players.Count != RequiredPlayerCount)
                     return WarGameState.GameOver;
                 if (this.Winner != null)
                     return WarGameState.GameOver;
@@ -221,32 +211,32 @@ namespace JamesGames.War
                 //
                 // Check for new game
 
-                if (_Cards.Any())
+                if (cards.Any())
                     return WarGameState.NewGame;
 
                 //
                 // Check for war declaration
 
-                if (_BattleTracker.HighCardHolders.Count() > 1)
+                if (battleTracker.HighCardHolders.Count() > 1)
                     return WarGameState.WarDeclared;
-                if (_BattleTracker.ActiveWars.Count > 0)
+                if (battleTracker.ActiveWars.Count > 0)
                 {
-                    if (_BattleTracker.ActiveWars.Count < _Players.Count)
+                    if (battleTracker.ActiveWars.Count < players.Count)
                         return WarGameState.WarDeclared;
-                    if (_BattleTracker.ActiveWars.Values.Any(list => list.Count < _BattleTracker.ActiveWars.Values.Max(item => item.Count)))
+                    if (battleTracker.ActiveWars.Values.Any(list => list.Count < battleTracker.ActiveWars.Values.Max(item => item.Count)))
                         return WarGameState.WarDeclared;
                 }
 
                 //
                 // Check for war
 
-                if ((_BattleTracker.ActiveWars.Count == _Players.Count) && (_BattleTracker.ActiveAttacks.Values.Count != _Players.Count))
+                if ((battleTracker.ActiveWars.Count == players.Count) && (battleTracker.ActiveAttacks.Values.Count != players.Count))
                     return WarGameState.AtWar;
 
                 //
                 // Check for battle
 
-                if (_BattleTracker.ActiveAttacks.Values.Count != _Players.Count)
+                if (battleTracker.ActiveAttacks.Values.Count != players.Count)
                     return WarGameState.AtBattle;
 
                 Debug.Assert(false, "Indeterminate game state.");
@@ -259,10 +249,10 @@ namespace JamesGames.War
             foreach (var player in players)
             {
                 player.Game = this;
-                this._Players.Add(player);
+                this.players.Add(player);
             }
 
-            _BattleTracker = new BattleTracker(this._Players.ToArray());
+            battleTracker = new BattleTracker(this.players.ToArray());
         }
 
         public void RemovePlayers(params WarPlayer[] players)
@@ -270,10 +260,10 @@ namespace JamesGames.War
             foreach (var player in players)
             {
                 player.Game = null;
-                this._Players.Remove(player);
+                this.players.Remove(player);
             }
 
-            _BattleTracker = new BattleTracker(this._Players.ToArray());
+            battleTracker = new BattleTracker(this.players.ToArray());
         }
 
         public void NewGame()
@@ -289,16 +279,16 @@ namespace JamesGames.War
             //
             // Reset the deck
 
-            _Cards.Reset();
-            _Cards.Shuffle();
-            _BattleTracker.Clear();
+            cards.Reset();
+            cards.Shuffle();
+            battleTracker.Clear();
 
             //
             // Deal
-            _Players.ForEach(p => p.Cards.Clear());
-            while(_Cards.Count > 0)
-                foreach (WarPlayer player in _Players)
-                    _Cards.DealTo(player.Cards);
+            players.ForEach(p => p.Cards.Clear());
+            while(cards.Count > 0)
+                foreach (WarPlayer player in players)
+                    cards.DealTo(player.Cards);
         }
 
         public override void AdvancePlay()
@@ -314,12 +304,12 @@ namespace JamesGames.War
                 case WarGameState.AtBattle:
                 case WarGameState.WarDeclared:
                 case WarGameState.AtWar:
-                    foreach (WarPlayer player in _Players)
+                    foreach (WarPlayer player in players)
                         player.Play();
-                    if (_BattleTracker.Winner != null)
+                    if (battleTracker.Winner != null)
                     {
                         AwardBattleWinner();
-                        _BattleTracker.Clear();
+                        battleTracker.Clear();
                     }
                     break;
 

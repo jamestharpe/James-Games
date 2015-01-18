@@ -8,7 +8,7 @@ namespace JamesGames.PlayingCards
     /// <summary>
     /// A playing card.
     /// </summary>
-    public class PlayingCard
+    public class PlayingCard : ICloneable
     {
         #region Constructors
         /// <summary>
@@ -41,7 +41,16 @@ namespace JamesGames.PlayingCards
 
         public override string ToString()
         {
-            return String.Format("{0} of {1}", Face, Suit);
+            return String.Format("{0} of {1}", this.Face, this.Suit);
+        }
+
+        /// <summary>
+        /// Returns a string representing the card face. For example: King.
+        /// </summary>
+        /// <returns></returns>
+        public string ToShortString()
+        {
+            return this.Face.ToString();
         }
 
         #region Operators
@@ -341,5 +350,14 @@ namespace JamesGames.PlayingCards
             get { return new PlayingCard(PlayingCardSuit.Spades, PlayingCardFace.King); }
         }
         #endregion Static Cards - Spades
+
+        #region ICloneable Members
+
+        public object Clone()
+        {
+            return new PlayingCard(this.Suit, this.Face);
+        }
+
+        #endregion
     }
 }

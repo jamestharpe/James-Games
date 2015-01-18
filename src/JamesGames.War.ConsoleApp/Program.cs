@@ -27,7 +27,9 @@ namespace JamesGames.War.ConsoleApp
                         game.AdvancePlay();
                         Debug.WriteLine(string.Empty);
                         if (game.GameState == WarGameState.GameOver)
+                        {
                             Debug.WriteLine("Winner: " + game.Winner.Name);
+                        }
                     } while (game.GameState != WarGameState.GameOver);
 
                 }

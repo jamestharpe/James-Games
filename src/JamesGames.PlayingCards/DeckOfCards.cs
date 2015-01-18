@@ -9,48 +9,84 @@ namespace JamesGames.PlayingCards
     /// <summary>
     /// Represents a deck of cards, such as to be used in a card game.
     /// </summary>
-    public class DeckOfCards : PlayingCardList
+    public class DeckOfCards : PlayingCardList, ICloneable
     {
-        private readonly IDeckOfCardsSupplier _CardSupplier;
+        public const int DefaultNumberOfDecks = 1;
 
-        #region Constructors
-        /// <summary>
-        /// Initializes a new instance of DeckOfCards.
-        /// </summary>
-        /// <param name="cardSupplier">Specifies the source of cards for the deck.</param>
-        public DeckOfCards(IDeckOfCardsSupplier cardSupplier)
+        public DeckOfCards(int numberOfDecks)
         {
-            Size = 0;
-            _CardSupplier = cardSupplier ?? new StandardDeckOfCardsSupplier();
-            Reset();
+            this.Reset(numberOfDecks);
         }
 
-        /// <summary>
-        /// Initializes a new instance of DeckOfCards.
-        /// </summary>
-        public DeckOfCards() : this(null) { }
-        #endregion Constructors
+        public DeckOfCards() : this(DefaultNumberOfDecks) { }
 
-        /// <summary>
-        /// Gets a value indicating the number of cards the deck initially holds.
-        /// </summary>
-        public int Size
-        {
-            get;
-            private set;
-        }
+        public int NumberOfDecksInLastReset { get; private set; }
 
-        /// <summary>
-        /// Resets the deck instance to it's original state, with a fully new set of cards. In most
-        /// cases, it should not be assumed that the cards are in any particular order (e.g. 
-        /// shuffled or sorted).
-        /// </summary>
-        public void Reset()
+        public void Reset(int numberOfDecks = 0)
         {
+            if (numberOfDecks < 0)
+            {
+                throw new ArgumentOutOfRangeException("numberOfDecks");
+            }
+            else if (numberOfDecks == 0)
+            {
+                numberOfDecks = this.NumberOfDecksInLastReset;
+            }
+
+            var cardSuits = (PlayingCardSuit[])Enum.GetValues(typeof(PlayingCardSuit));
+            var cardFaces = (PlayingCardFace[])Enum.GetValues(typeof(PlayingCardFace));
+
             this.Clear();
-            var supply = _CardSupplier.SupplyDeck();
-            this.AddRange(supply);
-            this.Size = this.Count;
+
+            for (int i = 0; i < numberOfDecks; i++)
+            {
+                foreach (PlayingCardSuit suit in cardSuits)
+                {
+                    foreach (PlayingCardFace face in cardFaces)
+                    {
+                        this.Add(new PlayingCard(suit, face));
+                    }
+                }
+            }
+
+            this.NumberOfDecksInLastReset = numberOfDecks;
+        }
+
+        public override string ToString()
+        {
+            var result = new StringBuilder();
+            foreach (var card in this)
+            {
+                result.AppendLine(card.ToString());
+            }
+
+            return result.ToString();
+        }
+
+
+        public PlayingCard DealCard(PlayingCardList hand)
+        {
+            if (this.Count < 1)
+                throw new InvalidOperationException("Deck is Empty.");
+
+            var result = this[0];
+            hand.Add(result);
+            this.RemoveAt(0);
+            return result;
+        }
+
+        /// <summary>
+        /// Clones the current object.
+        /// </summary>
+        /// <returns>A new instance of <see cref="DeckOfCards"/> exactly like the current instance.</returns>
+        public override object Clone()
+        {
+            PlayingCardList cards = (PlayingCardList)base.Clone();
+            DeckOfCards result = new DeckOfCards();
+            result.Clear();
+            result.AddRange(cards);
+            result.NumberOfDecksInLastReset = this.NumberOfDecksInLastReset;
+            return result;
         }
     }
 }

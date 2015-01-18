@@ -6,7 +6,7 @@ namespace JamesGames.PlayingCards
     /// <summary>
     /// Represents a list of playing cards.
     /// </summary>
-    public class PlayingCardList : List<PlayingCard>
+    public class PlayingCardList : List<PlayingCard>, ICloneable
     {
         #region Constructors
         /// <summary>
@@ -53,5 +53,24 @@ namespace JamesGames.PlayingCards
 
             return result;   
         }
+
+        #region ICloneable Members
+
+        /// <summary>
+        /// Clones the collection of cards.
+        /// </summary>
+        /// <returns>A <see cref="PlayingCardList"/>.</returns>
+        public virtual object Clone()
+        {
+            var result = new PlayingCardList();
+            foreach (var card in this)
+            {
+                result.Add((PlayingCard)card.Clone());
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 }

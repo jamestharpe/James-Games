@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JamesGames.PlayingCards</RootNamespace>
     <AssemblyName>JamesGames.PlayingCards</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,26 +31,31 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Rolcore, Version=0.0.4381.22528, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Rolcore, Version=0.0.4988.19960, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.dll</HintPath>
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.dll</HintPath>
     </Reference>
-    <Reference Include="Rolcore.Data, Version=0.0.4381.21042, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Rolcore.Net, Version=0.0.4381.22540, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Rolcore.Data, Version=0.0.4988.20108, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Net.dll</HintPath>
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Rolcore.Web, Version=0.0.4381.22540, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Rolcore.Net, Version=0.0.4988.20060, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Web.dll</HintPath>
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Rolcore.Xml.Linq, Version=0.0.4381.22539, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Rolcore.Repository">
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="Rolcore.Web, Version=0.0.4988.20025, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Xml.Linq.dll</HintPath>
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Rolcore.Xml.Linq, Version=0.0.4988.20124, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.Xml.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,13 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeckOfCards.cs" />
-    <Compile Include="IDeckOfCardsSupplier.cs" />
     <Compile Include="PlayingCard.cs" />
     <Compile Include="PlayingCardFace.cs" />
     <Compile Include="PlayingCardList.cs" />
     <Compile Include="PlayingCardSuit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StandardDeckOfCardsSupplier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagram.cd" />

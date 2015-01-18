@@ -14,25 +14,6 @@ namespace JamesGames.PlayingCards.Tests
     public class PlayingCardTests
     {
 
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
         #region Additional test attributes
         // 
         //You can use the following additional attributes as you write your tests:
@@ -68,32 +49,31 @@ namespace JamesGames.PlayingCards.Tests
         ///A test for PlayingCard Constructor
         ///</summary>
         [TestMethod()]
-        public void PlayingCardConstructorTest()
+        public void PlayingCardConstructor_SetsFaceAndSuit()
         {
-            PlayingCard target = new PlayingCard(PlayingCardSuit.Clubs, PlayingCardFace.Four);
-            Assert.AreEqual(target.Face, PlayingCardFace.Four);
-            Assert.AreEqual(target.Suit, PlayingCardSuit.Clubs);
+            var sut = new PlayingCard(PlayingCardSuit.Clubs, PlayingCardFace.Four);
+            Assert.AreEqual(sut.Face, PlayingCardFace.Four);
+            Assert.AreEqual(sut.Suit, PlayingCardSuit.Clubs);
         }
 
         /// <summary>
         ///A test for PlayingCard Constructor
         ///</summary>
         [TestMethod()]
-        public void PlayingCardDefaultConstructorTest()
+        public void PlayingCardDefaultConstructor_DefaultsToAceOfSpades()
         {
-            PlayingCard target = new PlayingCard();
-            Assert.AreEqual(target.Face, PlayingCardFace.Ace);
-            Assert.AreEqual(target.Suit, PlayingCardSuit.Spades);
+            var sut = new PlayingCard();
+            Assert.AreEqual(sut.Face, PlayingCardFace.Ace);
+            Assert.AreEqual(sut.Suit, PlayingCardSuit.Spades);
         }
 
         /// <summary>
         ///A test for Face
         ///</summary>
         [TestMethod()]
-        public void FaceTest()
+        public void Face_IsReadWrite()
         {
-            PlayingCard target = PlayingCard.EightOfDiamonds;
-            Assert.AreEqual(target.Face, PlayingCardFace.Eight);
+            var target = new PlayingCard();
             target.Face = PlayingCardFace.Five;
             Assert.AreEqual(target.Face, PlayingCardFace.Five);
         }
@@ -102,12 +82,11 @@ namespace JamesGames.PlayingCards.Tests
         ///A test for Suit
         ///</summary>
         [TestMethod()]
-        public void SuitTest()
+        public void Suit_IsReadWrite()
         {
-            PlayingCard target = PlayingCard.FiveOfHearts;
-            Assert.AreEqual(target.Suit, PlayingCardSuit.Hearts);
-            target.Suit = PlayingCardSuit.Spades;
-            Assert.AreEqual(target.Suit, PlayingCardSuit.Spades);
+            var target = new PlayingCard();
+            target.Suit = PlayingCardSuit.Clubs;
+            Assert.AreEqual(target.Suit, PlayingCardSuit.Clubs);
         }
     }
 }

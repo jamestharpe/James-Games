@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -11,9 +11,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JamesGames.PlayingCards.Tests</RootNamespace>
     <AssemblyName>JamesGames.PlayingCards.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,25 +33,33 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Rolcore, Version=0.0.4381.22528, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Rolcore, Version=0.0.4988.19960, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.dll</HintPath>
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.dll</HintPath>
     </Reference>
-    <Reference Include="Rolcore.Data">
-      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Data.dll</HintPath>
+    <Reference Include="Rolcore.Data, Version=0.0.4988.20108, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Rolcore.Net">
-      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Net.dll</HintPath>
+    <Reference Include="Rolcore.Net, Version=0.0.4988.20060, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Rolcore.Web">
-      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Web.dll</HintPath>
+    <Reference Include="Rolcore.Repository">
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.Repository.dll</HintPath>
     </Reference>
-    <Reference Include="Rolcore.Xml.Linq">
-      <HintPath>..\packages\Rolcore.0.0.0.3\lib\net40\Rolcore.Xml.Linq.dll</HintPath>
+    <Reference Include="Rolcore.Web, Version=0.0.4988.20025, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Rolcore.Xml.Linq, Version=0.0.4988.20124, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rolcore.0.0.4988.19960\lib\net45\Rolcore.Xml.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -67,10 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeckOfCardsTest.cs" />
-    <Compile Include="Mocks\Mock1AceOfSpadesDeckOfCardSupplier.cs" />
     <Compile Include="PlayingCardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StandardDeckOfCardsSupplierTest.cs" />
     <Compile Include="TestData.cs" />
   </ItemGroup>
   <ItemGroup>
