@@ -115,7 +115,7 @@ namespace JamesGames.War.Tests
         public void PlayAtBattleTest()
         {
             WarPlayer target = new WarPlayer(); // TODO: Initialize to an appropriate value
-            target.Cards.AddRange(new DeckOfCards());
+            target.Cards.AddRange(CardList.CreateDeck());
             MockWarGame warGame = new MockWarGame(WarGameState.AtBattle);
             target.Game = warGame;
             target.Play();
@@ -126,7 +126,7 @@ namespace JamesGames.War.Tests
         public void PlayWarDeclaredTest()
         {
             WarPlayer target = new WarPlayer();
-            target.Cards.AddRange(new DeckOfCards());
+            target.Cards.AddRange(CardList.CreateDeck());
             MockWarGame warGame = new MockWarGame(WarGameState.WarDeclared);
             target.Game = warGame;
             target.Play();
@@ -137,7 +137,7 @@ namespace JamesGames.War.Tests
         public void PlayAtWarBattleTest()
         {
             WarPlayer target = new WarPlayer();
-            target.Cards.AddRange(new DeckOfCards());
+            target.Cards.AddRange(CardList.CreateDeck());
             MockWarGame warGame = new MockWarGame(WarGameState.WarDeclared);
             target.Game = warGame;
             target.Play();
@@ -150,7 +150,7 @@ namespace JamesGames.War.Tests
         public void PlayGameOverTest()
         {
             WarPlayer target = new WarPlayer();
-            target.Cards.AddRange(new DeckOfCards());
+            target.Cards.AddRange(CardList.CreateDeck());
             MockWarGame warGame = new MockWarGame(WarGameState.GameOver);
             target.Game = warGame;
             target.Play();
@@ -181,7 +181,7 @@ namespace JamesGames.War.Tests
         public void CardsTest()
         {
             WarPlayer target = new WarPlayer(); // TODO: Initialize to an appropriate value
-            PlayingCardList actual = target.Cards;
+            CardList actual = target.Cards;
             Assert.IsNotNull(actual);
             Assert.AreEqual(0, actual.Count);
         }

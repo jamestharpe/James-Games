@@ -8,7 +8,7 @@ namespace JamesGames.PlayingCards
     /// <summary>
     /// Enumeration of playing card suits.
     /// </summary>
-    public enum PlayingCardSuit
+    public enum CardSuit
     {
         Clubs,
         Diamonds,

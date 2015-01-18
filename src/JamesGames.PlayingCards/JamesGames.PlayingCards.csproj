@@ -66,15 +66,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeckOfCards.cs" />
-    <Compile Include="PlayingCard.cs" />
-    <Compile Include="PlayingCardFace.cs" />
-    <Compile Include="PlayingCardList.cs" />
-    <Compile Include="PlayingCardSuit.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Card.cs" />
+    <Compile Include="CardFace.cs" />
+    <Compile Include="CardList.cs" />
+    <Compile Include="CardSuit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Diagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

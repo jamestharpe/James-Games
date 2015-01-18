@@ -7,9 +7,9 @@ using JamesGames.PlayingCards;
 namespace JamesGames.War
 {
     /// <summary>
-    /// Comparer for <see cref="PlayingCard"/>s in the game of War.
+    /// Comparer for <see cref="Card"/>s in the game of War.
     /// </summary>
-    class WarCardComparer : Comparer<PlayingCard>
+    class WarCardComparer : Comparer<Card>
     {
         /// <summary>
         /// Performs a comparison of two playing cards and returns a value indicating whether one 
@@ -17,10 +17,10 @@ namespace JamesGames.War
         /// </summary>
         /// <param name="x">The first card to compare.</param>
         /// <param name="y">The second card to compare.</param>
-        public override int Compare(PlayingCard x, PlayingCard y)
+        public override int Compare(Card x, Card y)
         {
-            int xCardValue = (x.Face == PlayingCardFace.Ace) ? 14 : (int)x.Face;
-            int yCardValue = (y.Face == PlayingCardFace.Ace) ? 14 : (int)y.Face;
+            int xCardValue = (x.Face == CardFace.Ace) ? 14 : (int)x.Face;
+            int yCardValue = (y.Face == CardFace.Ace) ? 14 : (int)y.Face;
 
             // ??? return xCardValue - yCardValue;
 

@@ -23,7 +23,7 @@ namespace JamesGames.War
     public class WarGame : AbstractWarGame
     {
         private readonly List<WarPlayer> players = new List<WarPlayer>();
-        private DeckOfCards cards = new DeckOfCards();
+        private CardList cards = CardList.CreateDeck();
         private BattleTracker battleTracker;
 
         private void EnforceRequiredPlayerCount()
@@ -46,8 +46,8 @@ namespace JamesGames.War
 
             int result = 0;
 
-            PlayingCardList winStack = new PlayingCardList();
-            foreach (PlayingCardList attack in battleTracker.PlayerAttacks.Values)
+            CardList winStack = new CardList();
+            foreach (CardList attack in battleTracker.PlayerAttacks.Values)
             {
                 while (attack.Count > 0)
                 {
@@ -69,7 +69,7 @@ namespace JamesGames.War
             return result;
         }
 
-        internal override PlayingCard PlayerBattle(WarPlayer player)
+        internal override Card PlayerBattle(WarPlayer player)
         {
             Debug.Assert(battleTracker.PlayerAttacks.Keys.Contains(player), "Player is not part of game.");
             this.RequireGameState(WarGameState.AtBattle, WarGameState.NewGame);
@@ -102,8 +102,8 @@ namespace JamesGames.War
 
             battleTracker.ActiveAttacks.Remove(player);
             if (!battleTracker.ActiveWars.ContainsKey(player))
-                battleTracker.ActiveWars[player] = new List<PlayingCardList>();
-            battleTracker.ActiveWars[player].Add(new PlayingCardList(NumberOfCardsToDealForWar));
+                battleTracker.ActiveWars[player] = new List<CardList>();
+            battleTracker.ActiveWars[player].Add(new CardList(NumberOfCardsToDealForWar));
             var warIndex = battleTracker.ActiveWars[player].Count - 1;
 
             //
@@ -124,7 +124,7 @@ namespace JamesGames.War
             return result;
         }
 
-        internal override PlayingCard PlayerPickWarAttack(WarPlayer player, int attackIndex)
+        internal override Card PlayerPickWarAttack(WarPlayer player, int attackIndex)
         {
             //
             // Pre conditions
@@ -281,7 +281,7 @@ namespace JamesGames.War
             //
             // Reset the deck
 
-            this.cards = new DeckOfCards();
+            this.cards = CardList.CreateDeck();
             cards.Shuffle();
             battleTracker.Clear();
 

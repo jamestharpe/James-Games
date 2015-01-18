@@ -8,9 +8,9 @@ namespace JamesGames.War
 {
     public abstract class AbstractWarGame
     {
-        internal abstract PlayingCard PlayerBattle(WarPlayer player);
+        internal abstract Card PlayerBattle(WarPlayer player);
         internal abstract int PlayerDeclareWar(WarPlayer player);
-        internal abstract PlayingCard PlayerPickWarAttack(WarPlayer player, int attackIndex);
+        internal abstract Card PlayerPickWarAttack(WarPlayer player, int attackIndex);
 
         public abstract WarGameState GameState { get; }
 

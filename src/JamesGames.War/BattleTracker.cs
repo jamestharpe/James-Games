@@ -8,14 +8,14 @@ namespace JamesGames.War
 {
     class BattleTracker
     {
-        private readonly Dictionary<WarPlayer, PlayingCardList> _PlayerAttacks = new Dictionary<WarPlayer, PlayingCardList>();
-        private readonly Dictionary<WarPlayer, List<PlayingCardList>> _ActiveWars = new Dictionary<WarPlayer, List<PlayingCardList>>();
-        private readonly Dictionary<WarPlayer, PlayingCard> _ActiveAttacks = new Dictionary<WarPlayer, PlayingCard>();
+        private readonly Dictionary<WarPlayer, CardList> _PlayerAttacks = new Dictionary<WarPlayer, CardList>();
+        private readonly Dictionary<WarPlayer, List<CardList>> _ActiveWars = new Dictionary<WarPlayer, List<CardList>>();
+        private readonly Dictionary<WarPlayer, Card> _ActiveAttacks = new Dictionary<WarPlayer, Card>();
 
         public BattleTracker(params WarPlayer[] players)
         {
             foreach (WarPlayer player in players)
-                PlayerAttacks.Add(player, new PlayingCardList());
+                PlayerAttacks.Add(player, new CardList());
         }
 
         public void Clear()
@@ -49,17 +49,17 @@ namespace JamesGames.War
             }
         }
 
-        public Dictionary<WarPlayer, PlayingCardList> PlayerAttacks
+        public Dictionary<WarPlayer, CardList> PlayerAttacks
         {
             get { return _PlayerAttacks; }
         }
 
-        public Dictionary<WarPlayer, List<PlayingCardList>> ActiveWars
+        public Dictionary<WarPlayer, List<CardList>> ActiveWars
         {
             get { return _ActiveWars; }
         }
 
-        public Dictionary<WarPlayer, PlayingCard> ActiveAttacks
+        public Dictionary<WarPlayer, Card> ActiveAttacks
         {
             get
             {

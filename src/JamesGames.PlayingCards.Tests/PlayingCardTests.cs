@@ -51,9 +51,9 @@ namespace JamesGames.PlayingCards.Tests
         [TestMethod()]
         public void PlayingCardConstructor_SetsFaceAndSuit()
         {
-            var sut = new PlayingCard(PlayingCardSuit.Clubs, PlayingCardFace.Four);
-            Assert.AreEqual(sut.Face, PlayingCardFace.Four);
-            Assert.AreEqual(sut.Suit, PlayingCardSuit.Clubs);
+            var sut = new Card(CardSuit.Clubs, CardFace.Four);
+            Assert.AreEqual(sut.Face, CardFace.Four);
+            Assert.AreEqual(sut.Suit, CardSuit.Clubs);
         }
 
         /// <summary>
@@ -62,9 +62,9 @@ namespace JamesGames.PlayingCards.Tests
         [TestMethod()]
         public void PlayingCardDefaultConstructor_DefaultsToAceOfSpades()
         {
-            var sut = new PlayingCard();
-            Assert.AreEqual(sut.Face, PlayingCardFace.Ace);
-            Assert.AreEqual(sut.Suit, PlayingCardSuit.Spades);
+            var sut = new Card();
+            Assert.AreEqual(sut.Face, CardFace.Ace);
+            Assert.AreEqual(sut.Suit, CardSuit.Spades);
         }
 
         /// <summary>
@@ -73,9 +73,9 @@ namespace JamesGames.PlayingCards.Tests
         [TestMethod()]
         public void Face_IsReadWrite()
         {
-            var target = new PlayingCard();
-            target.Face = PlayingCardFace.Five;
-            Assert.AreEqual(target.Face, PlayingCardFace.Five);
+            var target = new Card();
+            target.Face = CardFace.Five;
+            Assert.AreEqual(target.Face, CardFace.Five);
         }
 
         /// <summary>
@@ -84,9 +84,9 @@ namespace JamesGames.PlayingCards.Tests
         [TestMethod()]
         public void Suit_IsReadWrite()
         {
-            var target = new PlayingCard();
-            target.Suit = PlayingCardSuit.Clubs;
-            Assert.AreEqual(target.Suit, PlayingCardSuit.Clubs);
+            var target = new Card();
+            target.Suit = CardSuit.Clubs;
+            Assert.AreEqual(target.Suit, CardSuit.Clubs);
         }
     }
 }

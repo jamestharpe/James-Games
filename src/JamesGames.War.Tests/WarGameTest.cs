@@ -51,9 +51,9 @@ namespace JamesGames.War.Tests
             WarPlayer[] players = new WarPlayer[] {
                 new WarPlayer(){ Name = "Player 1" }};
 
-            players[0].Cards.Add(PlayingCard.TwoOfDiamonds);
-            players[0].Cards.Add(PlayingCard.ThreeOfDiamonds);
-            players[0].Cards.Add(PlayingCard.FourOfDiamonds);
+            players[0].Cards.Add(Card.TwoOfDiamonds);
+            players[0].Cards.Add(Card.ThreeOfDiamonds);
+            players[0].Cards.Add(Card.FourOfDiamonds);
 
             WarGame target = new WarGame(players);
             target.PlayerDeclareWar(players[0]);

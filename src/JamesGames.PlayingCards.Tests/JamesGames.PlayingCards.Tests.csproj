@@ -76,7 +76,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeckOfCardsTest.cs" />
+    <Compile Include="CardListTests.cs" />
     <Compile Include="PlayingCardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestData.cs" />

@@ -23,20 +23,20 @@ namespace JamesGames.War.Tests
         {
             WarCardComparer target = new WarCardComparer(); // TODO: Initialize to an appropriate value
 
-            PlayingCard[] unorderedCards = {   
-                PlayingCard.AceOfClubs,
-                PlayingCard.TwoOfClubs,
-                new PlayingCard(PlayingCardSuit.Clubs, PlayingCardFace.King),
-                PlayingCard.AceOfDiamonds };
+            Card[] unorderedCards = {   
+                Card.AceOfClubs,
+                Card.TwoOfClubs,
+                new Card(CardSuit.Clubs, CardFace.King),
+                Card.AceOfDiamonds };
 
-            PlayingCardList cardList = new PlayingCardList(unorderedCards);
+            CardList cardList = new CardList(unorderedCards);
 
             cardList.Sort(new WarCardComparer());
 
-            Assert.AreEqual(cardList[0].Face, PlayingCardFace.Two);
-            Assert.AreEqual(cardList[1].Face, PlayingCardFace.King);
-            Assert.AreEqual(cardList[2].Face, PlayingCardFace.Ace);
-            Assert.AreEqual(cardList[3].Face, PlayingCardFace.Ace);
+            Assert.AreEqual(cardList[0].Face, CardFace.Two);
+            Assert.AreEqual(cardList[1].Face, CardFace.King);
+            Assert.AreEqual(cardList[2].Face, CardFace.Ace);
+            Assert.AreEqual(cardList[3].Face, CardFace.Ace);
         }
     }
 }

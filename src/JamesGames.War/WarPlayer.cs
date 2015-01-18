@@ -9,7 +9,7 @@ namespace JamesGames.War
     public class WarPlayer
     {
         private int _MaxAttackIndex = -1;
-        private readonly PlayingCardList _Cards = new PlayingCardList();
+        private readonly CardList _Cards = new CardList();
         private AbstractWarGame _Game;
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace JamesGames.War
             }
         }
 
-        public PlayingCardList Cards 
+        public CardList Cards 
         {
             get { return this._Cards; }
         }
