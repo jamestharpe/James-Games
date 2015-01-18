@@ -285,10 +285,12 @@ namespace JamesGames.War
 
             //
             // Deal
+
             players.ForEach(p => p.Cards.Clear());
             while(cards.Count > 0)
                 foreach (WarPlayer player in players)
                     cards.DealTo(player.Cards);
+
         }
 
         public override void AdvancePlay()
