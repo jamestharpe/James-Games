@@ -62,9 +62,9 @@ namespace JamesGames.PlayingCards.Tests
             PlayingCard.QueenOfSpades,
             PlayingCard.KingOfSpades };
         
-        public static void AssertIsStandard52CardDeck(PlayingCard[] cards)
+        public static void AssertIsStandard52CardDeck(PlayingCard[] cards, int expectedDeckCount = 1)
         {
-            Assert.AreEqual(cards.Length, Standard52CardDeck.Length);
+            Assert.AreEqual(cards.Length, Standard52CardDeck.Length * expectedDeckCount);
 
             foreach (var expectedCard in Standard52CardDeck)
             {

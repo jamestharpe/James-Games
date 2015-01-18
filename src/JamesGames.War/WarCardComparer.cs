@@ -25,9 +25,14 @@ namespace JamesGames.War
             // ??? return xCardValue - yCardValue;
 
             if (xCardValue > yCardValue)
+            {
                 return 1;
+            }
+
             if (xCardValue < yCardValue)
+            {
                 return -1;
+            }
 
             return 0;
         }

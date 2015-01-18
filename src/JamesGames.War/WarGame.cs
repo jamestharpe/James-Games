@@ -23,7 +23,7 @@ namespace JamesGames.War
     public class WarGame : AbstractWarGame
     {
         private readonly List<WarPlayer> players = new List<WarPlayer>();
-        private readonly DeckOfCards cards = new DeckOfCards();
+        private DeckOfCards cards = new DeckOfCards();
         private BattleTracker battleTracker;
 
         private void EnforceRequiredPlayerCount()
@@ -177,10 +177,12 @@ namespace JamesGames.War
         /// <param name="players">The players of the game.</param>
         public WarGame(params WarPlayer[] players)
         {
-            if(players != null && players.Length > 0)
-                AddPlayers(players);
+            if (players != null && players.Length > 0)
+            {
+                this.AddPlayers(players);
+            }
 
-            NewGame();
+            this.NewGame();
         }
 
         /// <summary>
@@ -279,7 +281,7 @@ namespace JamesGames.War
             //
             // Reset the deck
 
-            cards.Reset();
+            this.cards = new DeckOfCards();
             cards.Shuffle();
             battleTracker.Clear();
 
@@ -287,9 +289,13 @@ namespace JamesGames.War
             // Deal
 
             players.ForEach(p => p.Cards.Clear());
-            while(cards.Count > 0)
+            while (cards.Count > 0)
+            {
                 foreach (WarPlayer player in players)
+                {
                     cards.DealTo(player.Cards);
+                }
+            }
 
         }
 

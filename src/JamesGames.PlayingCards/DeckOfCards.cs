@@ -13,43 +13,21 @@ namespace JamesGames.PlayingCards
     {
         public const int DefaultNumberOfDecks = 1;
 
-        public DeckOfCards(int numberOfDecks)
+        public DeckOfCards(int numberOfDecks = DefaultNumberOfDecks)
         {
-            this.Reset(numberOfDecks);
-        }
-
-        public DeckOfCards() : this(DefaultNumberOfDecks) { }
-
-        public int NumberOfDecksInLastReset { get; private set; }
-
-        public void Reset(int numberOfDecks = 0)
-        {
-            if (numberOfDecks < 0)
-            {
-                throw new ArgumentOutOfRangeException("numberOfDecks");
-            }
-            else if (numberOfDecks == 0)
-            {
-                numberOfDecks = this.NumberOfDecksInLastReset;
-            }
-
             var cardSuits = (PlayingCardSuit[])Enum.GetValues(typeof(PlayingCardSuit));
             var cardFaces = (PlayingCardFace[])Enum.GetValues(typeof(PlayingCardFace));
 
-            this.Clear();
-
             for (int i = 0; i < numberOfDecks; i++)
             {
-                foreach (PlayingCardSuit suit in cardSuits)
+                foreach (var suit in cardSuits)
                 {
-                    foreach (PlayingCardFace face in cardFaces)
+                    foreach (var face in cardFaces)
                     {
                         this.Add(new PlayingCard(suit, face));
                     }
                 }
             }
-
-            this.NumberOfDecksInLastReset = numberOfDecks;
         }
 
         public override string ToString()
@@ -63,18 +41,6 @@ namespace JamesGames.PlayingCards
             return result.ToString();
         }
 
-
-        public PlayingCard DealCard(PlayingCardList hand)
-        {
-            if (this.Count < 1)
-                throw new InvalidOperationException("Deck is Empty.");
-
-            var result = this[0];
-            hand.Add(result);
-            this.RemoveAt(0);
-            return result;
-        }
-
         /// <summary>
         /// Clones the current object.
         /// </summary>
@@ -85,7 +51,6 @@ namespace JamesGames.PlayingCards
             DeckOfCards result = new DeckOfCards();
             result.Clear();
             result.AddRange(cards);
-            result.NumberOfDecksInLastReset = this.NumberOfDecksInLastReset;
             return result;
         }
     }
